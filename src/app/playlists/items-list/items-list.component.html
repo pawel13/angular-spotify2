@@ -1,5 +1,7 @@
-<div class="list-group" *ngFor="let playlist of playlists; let i = index; trackBy trackFn">
-  <div class="list-group-item">
+<!-- selected?.id ? jesli null idz dalej... -->
+<div class="list-group">
+  <div class="list-group-item" *ngFor="let playlist of playlists; let i = index; trackBy trackFn" [class.active]=" selected?.id == playlist.id "
+    (click)=" select(playlist) ">
     {{ i + 1 }}. {{ playlist.name }}
   </div>
 </div>

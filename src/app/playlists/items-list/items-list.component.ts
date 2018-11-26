@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Output, Input } from '@angular/core';
 import { Playlist } from 'src/app/model/Playlist';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-items-list',
@@ -9,30 +10,22 @@ import { Playlist } from 'src/app/model/Playlist';
 })
 export class ItemsListComponent implements OnInit {
 
-  playlists: Playlist[] = [
-    {
-      id: 123,
-      name: 'Angular Hits 1',
-      favourite: true,
-      color: "#FF00FF"
-    },
-    {
-      id: 1234,
-      name: 'Angular Hits 2',
-      favourite: false,
-      color: "#BDB76B"
-    },
-    {
-      id: 12334534,
-      name: 'Angular Hits 3',
-      favourite: true,
-      color: "#FFFF00"
-    }
-  ];
+  @Input('items') 
+  playlists: Playlist[];
+
+  @Output('selectedChange') 
+  selectedChange = new EventEmitter<Playlist>();
+
+  selected: Playlist;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  select(playlist) {
+    this.selected = playlist;
+    this.selectedChange.emit(playlist);
   }
 
   trackFn(index: number, item: Playlist) {
