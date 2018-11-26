@@ -1,0 +1,5 @@
+<div class="list-group" *ngFor="let playlist of playlists; let i = index; trackBy trackFn">
+  <div class="list-group-item">
+    {{ i + 1 }}. {{ playlist.name }}
+  </div>
+</div>

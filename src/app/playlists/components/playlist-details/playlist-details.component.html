@@ -1,0 +1,95 @@
+<!-- * przy ngIf- oznacza opakuj diva w szablon -->
+
+<ng-container [ngSwitch]="mode">
+
+  <div *ngSwitchDefault>
+  </div>
+
+  <div *ngSwitchCase=" 'show' ">
+
+    <!-- lista: klucz - wartosc -->
+    <dl [title]="playlist.name" [attr.data.id]="playlist.id">
+      <dt>Name</dt>
+      <dd>{{ playlist.name }}</dd>
+
+      <dt>Favourite</dt>
+      <dd> {{ playlist.favourite ? 'Yes' : 'No' }}</dd>
+
+      <dt>Color</dt>
+      <dd [style.color]="playlist.color" [ngStyle]="{
+            backgroundColor: '#fafafa',
+            'fontSize.px': 36
+            }">
+        {{ playlist.color }}
+      </dd>
+    </dl>
+
+    <input type="button" value="Edit" class="btn btn-info" (click)="edit()">
+
+  </div>
+
+  <div *ngSwitchCase=" 'edit' ">
+
+    <!-- emmet -->
+
+    <!-- ---------------WERSJA 1 -->
+    <!-- <div class="form-group">
+          <label>Name: </label>
+          <input type="text" class="form-control" [value]="playlist.name" (input)="playlist.name = $event.target.value">
+        </div>
+      
+        <div class="form-group">
+          <label>Favourite: </label>
+          <input type="checkbox" [checked]="playlist.favourite" (change)="playlist.favourite = $event.target.checked">
+        </div>
+      
+        <div class="form-group">
+          <label>Color: </label>
+          <input type="color" [value]="playlist.color" (input)="playlist.color = $event.target.value">
+        </div> -->
+
+    <!-- ----------------- WERSJA 2 -->
+    <!-- to ma plusy, można dodac jakas akcje na obiekcie przed zapisaniem, np. walidacja, format -->
+    <!-- <div class="form-group">
+            <label>Name: </label>
+            <input type="text" class="form-control" [ngModel]="playlist.name" (ngModelChange)="playlist.name = $event">
+          </div>
+        
+          <div class="form-group">
+            <label>Favourite: </label>
+            <input type="checkbox" [ngModel]="playlist.favourite" (ngModelChange)="playlist.favourite = $event">
+          </div>
+        
+          <div class="form-group">
+            <label>Color: </label>
+            <input type="color" [ngModel]="playlist.color" (ngModelChange)="playlist.color = $event">
+          </div> -->
+
+    <!-- ---------------------- WERSJA 3 -->
+    <!-- dyrektywna jesli maja taki sam prefix -->
+    <!-- 
+      [] - przypisze, ale nie nasluchuje zmian
+      () - nasluchuje zmiany, ale nie zapisuje
+      [()] - nasluchuje zmiany, zmienia wartosc -->
+
+    <div class="form-group">
+      <label>Name: </label>
+      <input type="text" class="form-control" [(ngModel)]="playlist.name">
+    </div>
+
+    <div class="form-group">
+      <label>Favourite: </label>
+      <input type="checkbox" [(ngModel)]="playlist.favourite">
+    </div>
+
+    <div class="form-group">
+      <label>Color: </label>
+      <input type="color" [(ngModel)]="playlist.color">
+    </div>
+
+    <input type="button" value="Cancel" class="btn btn-danger" (click)="cancel()">
+    <input type="button" value="Save" class="btn btn-success" (click)="save()">
+
+  </div>
+
+</ng-container>

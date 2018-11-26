@@ -1,0 +1,17 @@
+// p{
+//     color: hotpink
+// }
+
+:host(.activated) p {
+    border: 1px solid black;
+    display: block;
+}
+
+:host-context(.pink-theme) p {
+    color: hotpink
+}
+
+// :host ::ng-deep p{
+//     color: hotpink;
+// }
+
