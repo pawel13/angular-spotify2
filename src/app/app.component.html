@@ -1,6 +1,6 @@
- <!-- crtl + spacja -->
- <!-- .container>.row>.col -->
- 
+<!-- crtl + spacja -->
+<!-- .container>.row>.col -->
+
 <div class="container">
   <div class="row">
     <div class="col">
@@ -8,10 +8,25 @@
       <h1>
         Welcome to {{ title }}!
       </h1>
-      
+
+      <!-- <button (click)="hide = !hide">Toogle {{hide}}</button> -->
+
+      <!-- <ng-template [appUnless]="hide" let-m="$implicit"> -->
+        <!-- <div *appUnless="hidem">
+          <p>Ala ma {{2+2}} KOTY</p>
+        </div> -->
+      <!-- </ng-template> -->
+
       <app-playlists-view></app-playlists-view>
+
+      <app-tabs>
+        <app-tab title="Placki A">Placki A</app-tab>
+
+        <app-tab title="Placki B">Placki B</app-tab>
+
+        <app-tab title="Placki C">Placki C</app-tab>
+      </app-tabs>
 
     </div>
   </div>
 </div>
-

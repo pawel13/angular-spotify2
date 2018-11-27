@@ -1,0 +1,4 @@
+<div class="card-header" (click)="toogle()">{{title}}</div>
+<div class="card-body" *ngIf="open">
+  <ng-content></ng-content>
+</div>
