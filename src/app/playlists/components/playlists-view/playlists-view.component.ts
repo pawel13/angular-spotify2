@@ -13,27 +13,39 @@ export class PlaylistsViewComponent implements OnInit {
       id: 123,
       name: 'Angular Hits 1',
       favourite: true,
-      color: "#FF00FF"
+      color: "#c70151"
     },
     {
       id: 1234,
       name: 'Angular Hits 2',
       favourite: false,
-      color: "#BDB76B"
+      color: "#065535"
     },
     {
       id: 12334534,
       name: 'Angular Hits 3',
       favourite: true,
-      color: "#FFFF00"
+      color: "#ff7f50"
     }
   ];
 
-  selected: Playlist = this.playlists[1];
+  selected: Playlist = this.playlists[0];
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  save(draft: Playlist) {
+    const index = this.playlists.findIndex(
+      p => p.id == draft.id
+    )
+    if (index === -1) {
+      return;
+    }
+
+    this.playlists.splice(index, 1, draft);
+    this.selected = draft;
   }
 
 }

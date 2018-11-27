@@ -6,6 +6,7 @@ import { PlaylistDetailsComponent } from './components/playlist-details/playlist
 import { ItemsListComponent } from './items-list/items-list.component';
 
 import { FormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { FormsModule } from '@angular/forms';
     ItemsListComponent],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
   exports: [
     PlaylistsViewComponent

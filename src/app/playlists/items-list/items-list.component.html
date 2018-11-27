@@ -1,7 +1,7 @@
 <!-- selected?.id ? jesli null idz dalej... -->
 <div class="list-group">
   <div class="list-group-item" *ngFor="let playlist of playlists; let i = index; trackBy trackFn" [class.active]=" selected?.id == playlist.id "
-    (click)=" select(playlist) ">
+    (click)=" select(playlist) " [appHighlight]="playlist.color">
     {{ i + 1 }}. {{ playlist.name }}
   </div>
 </div>

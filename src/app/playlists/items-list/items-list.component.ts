@@ -16,7 +16,10 @@ export class ItemsListComponent implements OnInit {
   @Output('selectedChange') 
   selectedChange = new EventEmitter<Playlist>();
 
+  @Input()
   selected: Playlist;
+
+  hover: Playlist;
 
   constructor() { }
 
@@ -24,7 +27,6 @@ export class ItemsListComponent implements OnInit {
   }
 
   select(playlist) {
-    this.selected = playlist;
     this.selectedChange.emit(playlist);
   }
 

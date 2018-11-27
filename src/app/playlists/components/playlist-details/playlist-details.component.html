@@ -28,12 +28,10 @@
 
   </div>
 
-  <div *ngSwitchCase=" 'edit' ">
+  <!-- emmet -->
 
-    <!-- emmet -->
-
-    <!-- ---------------WERSJA 1 -->
-    <!-- <div class="form-group">
+  <!-- ---------------WERSJA 1 -->
+  <!-- <div class="form-group">
           <label>Name: </label>
           <input type="text" class="form-control" [value]="playlist.name" (input)="playlist.name = $event.target.value">
         </div>
@@ -48,9 +46,9 @@
           <input type="color" [value]="playlist.color" (input)="playlist.color = $event.target.value">
         </div> -->
 
-    <!-- ----------------- WERSJA 2 -->
-    <!-- to ma plusy, można dodac jakas akcje na obiekcie przed zapisaniem, np. walidacja, format -->
-    <!-- <div class="form-group">
+  <!-- ----------------- WERSJA 2 -->
+  <!-- to ma plusy, można dodac jakas akcje na obiekcie przed zapisaniem, np. walidacja, format -->
+  <!-- <div class="form-group">
             <label>Name: </label>
             <input type="text" class="form-control" [ngModel]="playlist.name" (ngModelChange)="playlist.name = $event">
           </div>
@@ -65,31 +63,34 @@
             <input type="color" [ngModel]="playlist.color" (ngModelChange)="playlist.color = $event">
           </div> -->
 
-    <!-- ---------------------- WERSJA 3 -->
-    <!-- dyrektywna jesli maja taki sam prefix -->
-    <!-- 
+  <!-- ---------------------- WERSJA 3 -->
+  <!-- dyrektywna jesli maja taki sam prefix -->
+  <!-- 
       [] - przypisze, ale nie nasluchuje zmian
       () - nasluchuje zmiany, ale nie zapisuje
       [()] - nasluchuje zmiany, zmienia wartosc -->
 
+
+  <form *ngSwitchCase=" 'edit' " #formRef="ngForm" (ngSubmit)="save(formRef)">
+
     <div class="form-group">
       <label>Name: </label>
-      <input type="text" class="form-control" [(ngModel)]="playlist.name">
+      <input type="text" class="form-control" [ngModel]="playlist.name" name="name">
     </div>
 
     <div class="form-group">
       <label>Favourite: </label>
-      <input type="checkbox" [(ngModel)]="playlist.favourite">
+      <input type="checkbox" [ngModel]="playlist.favourite" name="favourite">
     </div>
 
     <div class="form-group">
       <label>Color: </label>
-      <input type="color" [(ngModel)]="playlist.color">
+      <input type="color" [ngModel]="playlist.color" name="color">
     </div>
 
     <input type="button" value="Cancel" class="btn btn-danger" (click)="cancel()">
-    <input type="button" value="Save" class="btn btn-success" (click)="save()">
+    <input type="submit" value="Save" class="btn btn-success">
 
-  </div>
+  </form>
 
 </ng-container>

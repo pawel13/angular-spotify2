@@ -1,0 +1,26 @@
+Visual Studio Code
+
+npm install -g @angular/cli
+
+ng new angular-opi-listopad2
+ng serve -o
+
+npm install bootstrap --save
+
+
+@NgModule
+- bootstrap -> pierwszy component, który ma byæ odczytany, potem potomkowie, itd.
+- provider -> przekazywanie zale¿noœci
+
+---------
+
+expression vs statement
+
+x = y > 3 ? 1 : 0;
+
+{{ wszystko co zwraca wartoœæ }}
+
+---------
+
+
+
