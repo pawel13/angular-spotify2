@@ -5,12 +5,13 @@ import { UnlessDirective } from './unless.directive';
 import { CardComponent } from './card/card.component';
 import { TabComponent } from './tab/tab.component';
 import { TabsComponent } from './tabs/tabs.component';
+import { TabsNavComponent } from './tabs-nav/tabs-nav.component';
 
 @NgModule({
-  declarations: [HighlightDirective, UnlessDirective, CardComponent, TabComponent, TabsComponent],
+  declarations: [HighlightDirective, UnlessDirective, CardComponent, TabComponent, TabsComponent, TabsNavComponent],
   imports: [
     CommonModule
   ],
-  exports: [HighlightDirective, UnlessDirective, CardComponent, TabComponent, TabsComponent]
+  exports: [HighlightDirective, UnlessDirective, CardComponent, TabComponent, TabsComponent, TabsNavComponent]
 })
 export class SharedModule { }

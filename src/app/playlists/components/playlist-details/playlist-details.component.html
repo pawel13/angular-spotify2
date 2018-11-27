@@ -99,12 +99,11 @@
         <label>Color: </label>
         <input type="color" [ngModel]="playlist.color" name="color">
       </div>
-    </form>
 
-    <ng-container ngProjectAs='footer'>
       <input type="button" value="Cancel" class="btn btn-danger" (click)="cancel()">
       <input type="submit" value="Save" class="btn btn-success">
-    </ng-container>
+
+    </form>
 
   </app-card>
 
