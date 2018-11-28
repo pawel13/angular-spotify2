@@ -10,11 +10,27 @@ import { MusicSearchService } from '../../services/music-search.service';
 export class MusicSearchComponent implements OnInit {
 
   albums: Album[];
+  message: string;
 
   constructor(private service: MusicSearchService) { }
 
+  search(query: string) {
+    this.service.getAlbums(query)
+      .subscribe(
+        albums => this.albums = albums,
+        error => (this.message = error.message),
+        () => console.log("completed!")
+      );
+  }
+
   ngOnInit() {
-    this.albums = this.service.getAlbums();
+    // this.service
+    //   .getAlbums()
+    //   .subscribe(
+    //     albums => this.albums = albums,
+    //     error => (this.message = error.message),
+    //     () => console.log("completed!")
+    //   );
   }
 
 }

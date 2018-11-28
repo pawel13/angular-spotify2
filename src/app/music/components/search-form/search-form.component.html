@@ -1,3 +1,12 @@
-<p>
-  search-form works!
-</p>
+<div class="input-group mb-3" [formGroup]="queryForm">
+  <input type="text" class="form-control" placeholder="Search" 
+    formControlName="query">
+
+
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary" type="button" 
+      (click)=search()>
+      Search
+    </button>
+  </div>
+</div>

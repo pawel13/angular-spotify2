@@ -1,7 +1,9 @@
 import { Injectable, Inject, InjectionToken } from '@angular/core';
-import { Album } from 'src/app/model/Albums';
-import { HttpClient } from '@angular/common/http'
-import { Observable } from 'rxjs';
+import { Album, AlbumResponse } from 'src/app/model/Albums';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http'
+import { Observable, of, empty, throwError } from 'rxjs';
+import { AuthService } from 'src/app/security/auth.service';
+import { map, pluck, catchError } from 'rxjs/operators'
 
 export const SEARCH_URL = new InjectionToken('Search API URL');
 
@@ -42,22 +44,19 @@ export class MusicSearchService {
 
   constructor(
     @Inject(SEARCH_URL) private api_url: string,
-    private http: HttpClient
+    private http: HttpClient,
+    private auth: AuthService
   ) { }
 
-  getAlbums() {
-
-    const request = this.http.get(this.api_url, {
-      headers: {
-
-      },
+  getAlbums(query = "batman"): Observable<Album[]> {
+    return this.http.get<AlbumResponse>(this.api_url, {
       params: {
-      },
-      // observe: 'response',
-      // reportProgress: false
-      // responseType: 'text'
-    });
-
-    return this.albums;
+        type: "album",
+        q: query
+      }
+    })
+    .pipe(
+      map(resp => resp.albums.items)
+    );
   }
 }

@@ -9,13 +9,15 @@ import { AlbumCardComponent } from './components/album-card/album-card.component
 import { environment } from 'src/environments/environment';
 import { SEARCH_URL } from './services/music-search.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [MusicSearchComponent, SearchFormComponent, AlbumsGridComponent, AlbumCardComponent],
   imports: [
     CommonModule,
     MusicRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   exports: [MusicSearchComponent],
   providers: [
