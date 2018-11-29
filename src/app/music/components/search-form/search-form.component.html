@@ -2,6 +2,7 @@
 
   <input type="text" class="form-control" placeholder="Search" formControlName="query">
 
+  <p *ngIf="queryForm.pending">Please wait... validating...</p>
 
   <!-- <div class="input-group-append">
     <button class="btn btn-outline-secondary" type="button" (click)=search()>
@@ -18,6 +19,10 @@
 
       <div *ngIf="field.getError('minlength') as error">
         Minimum length is {{ error.requiredLength }} characters
+      </div>
+
+      <div *ngIf="field.getError('censor') as error">
+          Field cannot include {{ error.badword }}
       </div>
 
     </ng-container>

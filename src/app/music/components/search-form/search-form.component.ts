@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { distinctUntilChanged, filter, debounceTime, map } from 'rxjs/operators';
+import { FormGroup, FormControl, Validators, ValidatorFn, ValidationErrors, AbstractControl, AsyncValidator, AsyncValidatorFn } from '@angular/forms';
+import { distinctUntilChanged, filter, debounceTime, map, withLatestFrom } from 'rxjs/operators';
+import { Observable, Observer } from 'rxjs';
 
 @Component({
   selector: 'app-search-form',
@@ -12,24 +13,74 @@ export class SearchFormComponent implements OnInit {
   queryForm: FormGroup;
 
   constructor() {
+
+    // const censor: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+
+    //   const hasError = (control.value as string).includes('batman')
+    //   return hasError ? {
+    //     censor: 'batman'
+    //   } : null;
+    // }
+
+
+    const censor = (badword: string): ValidatorFn => (control: AbstractControl): ValidationErrors | null => {
+      const hasError = (control.value as string).includes(badword)
+      return hasError
+        ? {
+          censor: { badword }
+        }
+        : null;
+    }
+
+    const asyncCensor = (badword: string): AsyncValidatorFn => (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return Observable.create((observer: Observer<ValidationErrors | null>) => {
+        const handler = setTimeout(() => {
+          const hasError = (control.value as string).includes(badword);
+          observer.next(
+            hasError
+              ? {
+                censor: { badword }
+              }
+              : null
+          );
+          observer.complete();
+        }, 500);
+        return () => {
+          clearTimeout(handler);
+        }
+      });
+    }
+
     this.queryForm = new FormGroup({
-      query: new FormControl('', [
-        Validators.required,
-        Validators.minLength(3)
-      ])
+      query: new FormControl('',
+        [Validators.required, Validators.minLength(3)],
+        // censor('batman')],
+        [asyncCensor('batman')]
+      )
     });
 
     console.log(this.queryForm);
 
-    this.queryForm.get('query')!.valueChanges
+    const value$ = this.queryForm.get('query')!.valueChanges
       .pipe(
         debounceTime(400),
         distinctUntilChanged(),
         filter(query => query.length >= 3),
-      )
-      .subscribe(query => {
-        this.search(query);
-      })
+      );
+
+    const valid$ = this.queryForm
+      .get('query')!
+      .statusChanges.pipe(
+        filter(status => status === 'VALID')
+      );
+
+    const search$ = valid$.pipe(
+      withLatestFrom(value$, (valid, value) => value)
+    );
+
+    search$.subscribe(query => {
+      this.search(query);
+    });
   }
 
   ngOnInit() {

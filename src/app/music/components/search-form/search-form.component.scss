@@ -1,8 +1,8 @@
 .form-group .ng-invalid.ng-dirty, 
 .form-group .ng-invalid.ng-touched {
-    border: 2px solid red
+    border: 2px solid darkred
 }
 
 .form-group .ng-invalid ~ div {
-    color: red
+    color: darkred
 }
