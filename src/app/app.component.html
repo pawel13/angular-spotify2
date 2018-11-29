@@ -35,5 +35,19 @@
       </app-tabs> -->
 
     </div>
+
+    <div class="col">
+
+        <h1>
+          Welcome to {{ title }}
+        </h1>
+  
+        <h5>Find your favourite playlist by a key word  </h5>
+
+        <button (click)="hide =! hide">Toggle</button>
+  
+        <app-music-search *ngIf="!hide"></app-music-search>
+      
+      </div>
   </div>
 </div>
