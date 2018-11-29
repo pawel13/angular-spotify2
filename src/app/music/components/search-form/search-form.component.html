@@ -1,12 +1,30 @@
-<div class="input-group mb-3" [formGroup]="queryForm">
-  <input type="text" class="form-control" placeholder="Search" 
-    formControlName="query">
+<div class="form-group mb-3" [formGroup]="queryForm">
+
+  <input type="text" class="form-control" placeholder="Search" formControlName="query">
 
 
-  <div class="input-group-append">
-    <button class="btn btn-outline-secondary" type="button" 
-      (click)=search()>
+  <!-- <div class="input-group-append">
+    <button class="btn btn-outline-secondary" type="button" (click)=search()>
       Search
     </button>
-  </div>
+  </div> -->
+
+  <ng-container *ngIf="queryForm.get('query') as field">
+    <ng-container *ngIf="field.dirty || field.touched">
+
+      <div *ngIf="field.hasError('required')">
+        Field is required
+      </div>
+
+      <div *ngIf="field.getError('minlength') as error">
+        Minimum length is {{ error.requiredLength }} characters
+      </div>
+
+    </ng-container>
+  </ng-container>
+
+  <!-- <form-messages [field]="queryForm.get('query')">
+
+  </form-messages> -->
+
 </div>
