@@ -1,0 +1,15 @@
+<div class="row" *ngIf="(album$ | async) as album">
+  <div class="col-2">
+    <app-album-card [album]="album"></app-album-card>
+  </div>
+
+  <div class="col">
+    <audio controls="true" #player></audio>
+
+    <ul class="list-group">
+      <li *ngFor="let track of album.tracks.items" class="list-group-item" (click)="player.src = track.preview_url; player.play()">
+        {{ track.name }}
+      </li>
+    </ul>
+  </div>
+</div>

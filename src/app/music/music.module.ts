@@ -10,9 +10,10 @@ import { environment } from 'src/environments/environment';
 import { SEARCH_URL } from './services/music-search.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AlbumDetailsComponent } from './components/album-details/album-details.component';
 
 @NgModule({
-  declarations: [MusicSearchComponent, SearchFormComponent, AlbumsGridComponent, AlbumCardComponent],
+  declarations: [MusicSearchComponent, SearchFormComponent, AlbumsGridComponent, AlbumCardComponent, AlbumDetailsComponent],
   imports: [
     CommonModule,
     MusicRoutingModule,

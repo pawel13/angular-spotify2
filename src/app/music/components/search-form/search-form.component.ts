@@ -12,7 +12,10 @@ export class SearchFormComponent implements OnInit {
 
   @Input()
   set query(value: string) {
-    this.queryForm.get('query')!.setValue(value);
+    this.queryForm.get('query')!.setValue(value, {
+      emitEvent: false,
+      onlySelf: true
+    });
   }
 
   queryForm: FormGroup;

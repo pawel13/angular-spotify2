@@ -1,5 +1,9 @@
 <img class="card-img-top" [src]="album.images[0] && album.images[0].url">
 
 <div class="card-body">
-  <h5 class="card-title">{{ album.name }}</h5>
+  <h5 class="card-title">
+    <a [routerLink]="['/music', album.id]">
+      {{ album.name }}
+    </a>
+  </h5>
 </div>

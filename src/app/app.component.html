@@ -1,53 +1,41 @@
 <!-- crtl + spacja -->
 <!-- .container>.row>.col -->
+<nav class="navbar navbar-expand navbar-dark bg-dark mb-3">
+  <div class="container">
+    <a class="navbar-brand" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/">Music App</a>
+
+    <div class="collapse navbar-collapse">
+
+      <ul class="navbar-nav">
+
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/music">Search</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/playlists">Playlists</a>
+        </li>
+
+      </ul>
+
+    </div>
+
+  </div>
+</nav>
 
 <div class="container">
   <div class="row">
     <div class="col">
 
-      <h1>
+      <!-- <h1>
         Welcome to {{ title }}
-      </h1>
+      </h1> -->
 
-      <h5>Find your favourite playlist by a key word  </h5>
+      <!-- <h5>Find your favourite playlist by a key word </h5> -->
 
-      <!-- <button (click)="hide = !hide">Toogle {{hide}}</button> -->
+      <!-- <app-music-search></app-music-search> -->
 
-      <!-- <ng-template [appUnless]="hide" let-m="$implicit"> -->
-      <!-- <div *appUnless="hidem">
-          <p>Ala ma {{2+2}} KOTY</p>
-        </div> -->
-      <!-- </ng-template> -->
-
-      <!-- <app-playlists-view></app-playlists-view> -->
-
-      <app-music-search></app-music-search>
-
-      <!-- <app-tabs>
-
-        <app-tabs-nav></app-tabs-nav>
-
-        <app-tab title="Placki A">Placki A</app-tab>
-
-        <app-tab title="Placki B">Placki B</app-tab>
-
-        <app-tab title="Placki C">Placki C</app-tab>
-      </app-tabs> -->
+      <router-outlet></router-outlet>
 
     </div>
-
-    <div class="col">
-
-        <h1>
-          Welcome to {{ title }}
-        </h1>
-  
-        <h5>Find your favourite playlist by a key word  </h5>
-
-        <button (click)="hide =! hide">Toggle</button>
-  
-        <app-music-search *ngIf="!hide"></app-music-search>
-      
-      </div>
   </div>
 </div>
